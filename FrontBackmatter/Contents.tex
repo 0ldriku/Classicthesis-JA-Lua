@@ -1,0 +1,37 @@
+%*******************************************************
+% Table of Contents
+%*******************************************************
+% NOTE: Page style is already set to 'plain' in main.tex frontmatter section
+% DO NOT override it here or it will persist into mainmatter!
+\refstepcounter{dummy}
+\pdfbookmark[1]{\contentsname}{tableofcontents}
+\setcounter{tocdepth}{2} % toc depth
+\setcounter{secnumdepth}{3} % section numbering depth
+\tableofcontents
+\markboth{\contentsname}{\contentsname}
+%*******************************************************
+% List of Figures and Tables
+%*******************************************************
+%\cleardoublepage
+\newpage
+\refstepcounter{dummy}
+\pdfbookmark[1]{\listfigurename}{lof}
+\listoffigures
+
+\vspace{2em} % Space between lists if on same page
+\refstepcounter{dummy}
+\pdfbookmark[1]{\listtablename}{lot}
+\listoftables
+
+
+\pdfbookmark[1]{Acronyms}{acronyms}
+\markboth{Acronyms}{Acronyms}
+\chapter*{略語一覧}
+\renewcommand{\aclabelfont}[1]{\small\HeadSansRegular{#1}}
+\setlength{\labelsep}{1em} % Increase space between label and description
+\begin{acronym}[WWWW]
+    \acro{DRY}{Don't Repeat Yourself}
+    \acro{API}{Application Programming Interface}
+    \acro{UML}{Unified Modeling Language}
+    \acro{TPD}{Tokyo-Tech Power Don}
+\end{acronym}

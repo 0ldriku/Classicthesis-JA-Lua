@@ -1,0 +1,48 @@
+%*******************************************************
+% Titlepage
+%*******************************************************
+\begin{titlepage}
+    %\pdfbookmark[1]{\myTitle}{titlepage}
+    % if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
+    % Use newgeometry to center content (ignore binding offset)
+    \newgeometry{margin=3cm}
+    \begin{center}
+        \large
+
+
+        \vfill
+        \includegraphics[width=8.6 cm]{gfx/ScienceTokyo_Primary logo_RGB_L.png} \\ 
+        \vspace{1cm}
+
+        \textsf{20XX年度}
+
+        \textsf{修士/博士論文}
+        
+        
+        \vspace{6cm}
+        
+        \begingroup
+            \color{CTtitle}{\Large\textbf\myTitle} \\ \bigskip
+        \endgroup
+
+        {\myName}
+
+        \vspace{8cm}
+
+
+        %\mySubtitle \\ \medskip
+        %\myDegree \\
+        %\myDepartment \\
+        %\myFaculty \\
+        %\myUni \\ \bigskip
+
+
+        
+        \myUni\myFaculty\myDepartment \\
+        \myTime\ %-- \myVersion
+
+        \vfill
+
+    \end{center}
+    \restoregeometry
+\end{titlepage}

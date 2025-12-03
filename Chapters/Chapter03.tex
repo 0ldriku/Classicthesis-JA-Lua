@@ -1,0 +1,255 @@
+
+
+% --- 定理環境 ---
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{補題}
+\newtheorem{definition}[theorem]{定義}
+\newtheorem{proposition}[theorem]{命題}
+
+% ==============================================================================
+
+\chapter{猫的存在論に関する基礎的考察}
+\label{ch:cat}
+
+% ------------------------------------------------------------------------------
+\section{序論}
+\label{sec:intro}
+
+吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。
+何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
+吾輩はここで始めて人間というものを見た。
+しかもあとで聞くとそれは書生\mynote{書生の大好物は東工大パワー丼(\ac{TPD})である。}という人間中で一番獰悪な種族であったそうだ。
+
+本研究では、猫的存在の本質について考察する。
+\textcite{tanaka2025}によれば、ダミーとミダーの関連性は猫の認識論において
+重要な役割を果たすとされている。
+また、\textcite{mayer2021}のマルチメディア学習理論は、
+猫が人間を観察する際の認知プロセスにも適用可能であると考えられる。
+
+本章の構成は以下の通りである。
+\cref{sec:theory}では理論的枠組みを示し、
+\cref{sec:method}では研究手法を述べる。
+\cref{sec:results}では実験結果を報告し、
+最後に\cref{sec:discussion}で考察を行う。
+
+
+% ------------------------------------------------------------------------------
+\section{理論的枠組み}
+\label{sec:theory}
+
+\subsection{猫的認識論の数学的定式化}
+
+吾輩の認識過程は、以下の微分方程式によってモデル化される
+\parencite{suzuki2024,takeda2012_cge}：
+
+\begin{equation}
+    \frac{d\mathbf{C}}{dt} = \alpha \nabla^2 \mathbf{C} 
+    + \beta \mathbf{C} \times \mathbf{H} - \gamma \mathbf{C}
+    \label{eq:cat_dynamics}
+\end{equation}
+
+ここで、$\mathbf{C}$は猫の認識状態ベクトル、$\mathbf{H}$は人間の行動ベクトル、
+$\alpha$, $\beta$, $\gamma$はそれぞれ拡散係数、相互作用係数、減衰係数である。
+
+\begin{definition}[猫的観察関数]
+    \label{def:observation}
+    猫的観察関数$\Phi: \mathcal{H} \to \mathcal{C}$を以下のように定義する：
+    \begin{equation}
+        \Phi(h) = \int_{\Omega} K(x, y) \cdot h(y) \, dy
+    \end{equation}
+    ただし、$K(x,y)$は観察カーネル、$\Omega$は観察領域である。
+\end{definition}
+
+この定義に基づき、以下の定理が成立する。
+
+\begin{theorem}[猫的認識の収束定理]
+    \label{thm:convergence}
+    任意の初期状態$\mathbf{C}_0$に対して、\autorefja{eq:cat_dynamics}の解は
+    $t \to \infty$において一意の平衡状態$\mathbf{C}^*$に収束する。
+    すなわち、
+    \begin{equation}
+        \lim_{t \to \infty} \|\mathbf{C}(t) - \mathbf{C}^*\| = 0
+    \end{equation}
+\end{theorem}
+
+\begin{proof}
+    リャプノフ関数$V(\mathbf{C}) = \frac{1}{2}\|\mathbf{C} - \mathbf{C}^*\|^2$を考える。
+    時間微分を計算すると、
+    \begin{align}
+        \frac{dV}{dt} &= (\mathbf{C} - \mathbf{C}^*)^\top \frac{d\mathbf{C}}{dt} \\
+        &\leq -\gamma \|\mathbf{C} - \mathbf{C}^*\|^2 < 0
+    \end{align}
+    したがって、$V$は狭義に減少し、$\mathbf{C} \to \mathbf{C}^*$が示される。
+\end{proof}
+
+
+\subsection{書生との相互作用モデル}
+
+この書生というのは時々我々を捕えて煮て食うという話である。
+しかしその当時は何という考もなかったから別段恐しいとも思わなかった。
+ただ彼の掌に載せられてスーと持ち上げられた時何だかフワフワした感じがあったばかりである。
+
+\textcite{fiorella2022}は生成的活動原理について論じているが、
+これは猫が書生を観察する際の認知プロセスにも適用できる。
+具体的には、猫は観察対象に対して能動的な意味構築を行う
+\parencite{Miede2011}。
+
+相互作用のエネルギーは次式で与えられる：
+\begin{equation}
+    E_{\text{int}} = -J \sum_{\langle i,j \rangle} s_i s_j 
+    - h \sum_i s_i + \sum_i \frac{p_i^2}{2m}
+    \label{eq:interaction}
+\end{equation}
+
+
+% ------------------------------------------------------------------------------
+\section{研究手法}
+\label{sec:method}
+
+\subsection{実験設定}
+
+掌の上で少し落ちついて書生の顔を見たのがいわゆる人間というものの見始であろう。
+この時妙なものだと思った感じが今でも残っている。
+実験は\cref{tab:conditions}に示す条件で実施した。
+
+\begin{table}[htbp]
+    \centering
+    \footnotesize
+    \caption{実験条件の一覧}
+    \label{tab:conditions}
+    \begin{tabular}{lccc}
+        \toprule
+        条件 & 温度 (\si{\degreeCelsius}) & 湿度 (\%) & 観察時間 (h) \\
+        \midrule
+        条件A & \num{25.0} & \num{60} & \num{24} \\
+        条件B & \num{20.0} & \num{50} & \num{48} \\
+        条件C & \num{30.0} & \num{70} & \num{12} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+なお、\textcite{sato2023}の報告によれば、東工大パワー丼における水菜と豚肉の
+最適配分比は$3:7$であることが示されている。
+これは猫の食事嗜好とも関連する興味深い知見である。
+
+
+\subsection{データ収集方法}
+
+第一毛をもって装飾されべきはずの顔がつるつるしてまるで薬缶だ。
+その後猫にもだいぶ逢ったがこんな片輪には一度も出会わした事がない。
+のみならず顔の真中があまりに突起している。
+データ収集は以下の手順で行った：
+
+\begin{enumerate}
+    \item 観察対象（書生）の行動をビデオ撮影する
+    \item 撮影データから特徴量$\mathbf{x} = (x_1, x_2, \ldots, x_n)^\top$を抽出する
+    \item 主成分分析により次元削減を行う：
+        \begin{equation}
+            \mathbf{z} = \mathbf{W}^\top (\mathbf{x} - \boldsymbol{\mu})
+        \end{equation}
+    \item 得られた低次元表現を用いてクラスタリングを実施する
+\end{enumerate}
+
+
+% ------------------------------------------------------------------------------
+\section{結果}
+\label{sec:results}
+
+\subsection{定量的分析}
+
+そうしてその穴の中から時々ぷうぷうと煙を吹く。
+どうも咽せぽくて実に弱った。これが人間の飲む煙草というものである事は
+ようやくこの頃知った。
+
+\cref{fig:results}に主要な結果を示す\footnote{%
+    本図は説明のためのダミーであり、実際のデータに基づくものではない。
+}。
+
+\begin{figure}[htbp]
+    \centering
+    % 実際の図がある場合：
+    % \includegraphics[width=0.8\textwidth]{results.pdf}
+    \fbox{\parbox{0.7\textwidth}{
+        \centering
+        \vspace{1cm}
+        ［ここに結果のグラフが入る］\\
+        図の説明：猫的認識状態の時間発展
+        \vspace{1cm}
+    }}
+    \caption{猫的認識状態$\mathbf{C}(t)$の時間発展。
+    実線は理論予測、点は実験データを表す。}
+    \label{fig:results}
+\end{figure}
+
+
+\subsection{定性的観察}
+
+この書生の掌の裏でしばらくはよい心持に坐っておったが、
+しばらくすると非常な速力で運転し始めた。
+書生が動くのか自分だけが動くのか分らないが無暗に眼が廻る。
+胸が悪くなる。到底助からないと思っていると、
+どさりと音がして眼\footnote{左}から火\footnote{青い}が出た。
+
+観察結果を\cref{tab:qualitative}にまとめる。
+
+\begin{table}[htbp]
+    \centering
+    \footnotesize
+    \caption{定性的観察結果のまとめ}
+    \label{tab:qualitative}
+    \begin{tabular}{lp{8cm}}
+        \toprule
+        観察項目 & 記述 \\
+        \midrule
+        視覚的特徴 & 顔面に毛がなく、薬缶のようにつるつるしている \\
+        嗅覚的特徴 & 煙草の煙を頻繁に吐き出し、不快な臭気を発する \\
+        運動特性 & 急激な加速度変化を伴う不規則な運動パターン \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+% ------------------------------------------------------------------------------
+\section{考察}
+\label{sec:discussion}
+
+それまでは記憶しているがあとは何の事やらいくら考え出そうとしても分らない。
+ふと気が付いて見ると書生はいない。たくさんおった兄弟が一疋も見えぬ。
+肝心の母親さえ姿を隠してしまった。
+その上今までの所とは違って無暗に明るい。
+眼を明いていられぬくらいだ。
+はてな何でも容子がおかしいと、のそのそ這い出して見ると非常に痛い。
+
+本研究で得られた知見は、\textcite{mayer2021}のマルチメディア学習理論と
+整合的である。すなわち、猫的認識においても認知負荷の管理が重要であり、
+過度な刺激は学習効率を低下させることが示唆された
+\parencite{fiorella2022,tanaka2025}。
+
+また、\cref{thm:convergence}で示した収束定理は、
+猫の環境適応能力の数学的基盤を与えるものである。
+この結果は\textcite{suzuki2024}の先行研究を拡張したものであり、
+より一般的な条件下での適用可能性を示している。
+
+今後の課題として、以下の点が挙げられる：
+\begin{itemize}
+    \item より長期間の観察による時系列データの蓄積
+    \item 複数の猫個体を対象とした比較研究
+    \item 書生以外の人間種族（教師、主人など）との相互作用の解析
+\end{itemize}
+
+
+% ------------------------------------------------------------------------------
+\section{結論}
+\label{sec:conclusion}
+
+本章では、猫的存在論の基礎的考察を行った。
+\cref{eq:cat_dynamics}に基づく理論モデルを提案し、
+\cref{thm:convergence}においてその数学的性質を明らかにした。
+実験結果は理論予測と良好な一致を示し（\cref{fig:results}参照）、
+提案モデルの妥当性が確認された。
+
+吾輩はここで始めて人間というものを見た。
+しかも後で聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。
+この書生というのは時々我々を捕えて煮て食うという話である。
+しかしその当時は何という考もなかったから別段恐しいとも思わなかった
+\parencite{Miede2011,sato2023}。

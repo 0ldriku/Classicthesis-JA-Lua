@@ -1,0 +1,841 @@
+\chapter{\LaTeX のすゝめ}\label{ch:examples}
+
+本章は、この論文スタイルの使用ガイドおよびテンプレートとして機能します。セクション分け、引用、図、表、数式など、必要となる最も一般的な\mynote{そうでもない}要素の実例を示します。
+
+\section{環境}
+
+\subsection{見出し}
+
+\begin{lstlisting}
+
+\part{部}
+\chapter{章} 
+\section{節}
+\subsection{項}
+\subsubsection{目}
+\paragraph{段落} %段落に見出しをつける場合
+\subparagraph{小段落} 
+
+% \chapter*{}、\section*{}、*をつけることで、番号をつけないようにできます。
+
+
+
+\end{lstlisting}
+
+\subsection{フォントサイズ}
+\LaTeX は、文書内の様々な組版上のニーズに対応するために、フォントサイズコマンドの階層を提供しています。\autorefja{tab:fontsizes} に詳述されている10個の標準フォントサイズコマンドは、脚注や添え字用の \texttt{\textbackslash tiny} から、主要な見出しやタイトル用の \texttt{\textbackslash Huge} まで多岐にわたります。これらのコマンドは、文書の基本フォントサイズ（ドキュメントクラスのオプションで指定）に対する相対的なサイズであり、文書全体を通して一貫したスケーリングを保証します。
+
+
+
+
+
+\begin{table}[!ht]
+\centering
+
+\caption{LaTeX フォントサイズコマンド一覧}
+\renewcommand{\arraystretch}{1.8}
+% Modern column definition with better spacing
+\begin{tabular}{@{\extracolsep{8pt}}l l@{}}
+\toprule
+\rowcolor{headerblue}
+\color{white}\textbf{コマンド} & 
+\color{white}\textbf{出力例} \\
+\midrule
+\rowcolor{lightgray}
+\texttt{\textbackslash tiny} & {\tiny This is tiny text} \\
+\texttt{\textbackslash scriptsize} & {\scriptsize This is scriptsize text} \\
+\rowcolor{lightgray}
+\texttt{\textbackslash footnotesize} & {\footnotesize This is footnotesize text} \\
+\texttt{\textbackslash small} & {\small This is small text} \\
+\rowcolor{lightgray}
+\texttt{\textbackslash normalsize} & {\normalsize This is normalsize text} \\
+\texttt{\textbackslash large} & {\large This is large text} \\
+\rowcolor{lightgray}
+\texttt{\textbackslash Large} & {\Large This is Large text} \\
+\texttt{\textbackslash LARGE} & {\LARGE This is LARGE text} \\
+\rowcolor{lightgray}
+\texttt{\textbackslash huge} & {\huge This is huge text} \\
+\texttt{\textbackslash Huge} & {\Huge This is Huge text} \\
+\bottomrule
+\label{tab:fontsizes}
+\end{tabular}
+
+\end{table}
+
+Here is a single paragraph that demonstrates the relative scales of standard \LaTeX{} font commands. We start with {\tiny tiny text for fine details}, move up to {\scriptsize script size usually for subscripts}, and then {\footnotesize footnote size}. 
+
+Gradually, we reach {\small small text}, before returning to {\normalsize the default normal size}. To emphasize points, we can use {\large large text}, {\Large larger text for sub-titles}, or {\LARGE even larger text}. Finally, for major impacts, we use {\huge huge} and {\Huge massive sizes}.
+
+
+これはLaTeXのフォントサイズ変更コマンドを確認するための段落です。まず{\tiny 極小の文字 (tiny)}から始まり、{\scriptsize 添え字などに使うサイズ (scriptsize)}、そして{\footnotesize 脚注サイズ (footnotesize)}へと変化します。
+
+ここから{\small 少し小さな文字 (small)}になり、{\normalsize 標準のサイズ (normalsize)}に戻ります。強調したい場合は{\large やや大きな文字 (large)}、{\Large 大きな文字 (Large)}、あるいは{\LARGE さらに大きな文字 (LARGE)}を使います。見出しなどで目立たせるには{\huge 巨大な文字 (huge)}や、{\Huge 最大級の文字 (Huge)}を使用します。
+
+\subsection{英文の書式設定}
+
+\begin{lstlisting}
+% 英文のみ
+\textit{}  % イタリック
+\textbf{}  % ボールド
+\textsf{}  % ゴシック
+\end{lstlisting}
+
+
+The quick brown fox jumps over the lazy dog
+
+\textit{The quick brown fox jumps over the lazy dog}
+
+\textbf{The quick brown fox jumps over the lazy dog}
+
+
+
+
+% Sans-serif regular
+\textsf{The quick brown fox jumps over the lazy dog}
+
+% Sans-serif italic
+\textsf{\textit{The quick brown fox jumps over the lazy dog}}
+
+% Sans-serif bold
+\textsf{\textbf{The quick brown fox jumps over the lazy dog}}
+
+
+
+\subsection{略語}
+Acronym testing: \ac{UML} -- \acs{UML} -- \acf{UML} -- \acp{UML}
+
+\ac{TPD} -- \acs{TPD} -- \acf{TPD} -- \acp{TPD}
+
+\ac{API}--\acs{DRY}
+
+
+
+\subsection{リスト}
+箇条書きリストの例:
+
+\begin{lstlisting}
+\begin{itemize}
+    \item 最初の項目
+    \item 2番目の項目
+\end{itemize}
+\end{lstlisting}
+
+\begin{itemize}
+    \item 最初の項目
+    \item 2番目の項目
+\end{itemize}
+
+\vspace{1cm}
+\noindent 番号付きリストの例:
+
+\begin{lstlisting}
+\begin{enumerate}
+    \item 最初の手順
+    \item 2番目の手順
+\end{enumerate}
+\end{lstlisting}
+
+\begin{enumerate}
+    \item 最初の手順
+    \item 2番目の手順
+\end{enumerate}
+
+\vspace{1cm}
+\noindent 説明リストの例:
+
+\begin{lstlisting}
+\begin{description}
+    \item[項目 1] 最初の手順
+    \item[項目 2] 2番目の手順
+\end{description}
+
+\end{lstlisting}
+
+
+\begin{description}
+    \item[項目 1] 最初の手順
+    \item[項目 2] 2番目の手順
+\end{description}
+
+
+\subsection{Quote}
+
+
+\begin{lstlisting}
+\begin{quote}
+    パワー丼食べたい。
+\end{quote}
+\end{lstlisting}
+
+
+\begin{quote}
+    パワー丼食べたい。    
+\end{quote}
+
+\section{参考文献}
+本テンプレートでは、APA Style 7the Editionを使用しています。
+
+
+\begin{center}
+    \url{https://apastyle.apa.org/style-grammar-guidelines/references/examples}
+\end{center}
+
+
+日本語は教育心理学研究\mynote{ほぼ}のスタイルです。句読点は英文APAのままです。
+
+\begin{center}
+    \url{https://www.jstage.jst.go.jp/browse/jjep/-char/ja/}
+\end{center}
+
+
+\begin{lstlisting}
+\parencite{fiorella2022}  % 括弧付き引用
+\textcite{fiorella2022}   % 文中引用
+\parencite{fiorella2022,knuth1984,vaswani2017}  % 複数の引用
+\citeauthor{fiorella2022}  % 著者
+\citeyear{fiorella2022}  % 年
+\end{lstlisting}
+
+
+\begin{description}
+    
+    \item[括弧付き引用:] \ \parencite{fiorella2022}.
+    \item[文中引用:] \ \textcite{fiorella2022} は...を発見した。
+    \item[複数の引用:]\ \parencite{fiorella2022,knuth1984,vaswani2017}.
+    \item[著者と年:]\  \citeauthor{fiorella2022} の (\citeyear{fiorella2022})
+\end{description}
+
+
+
+
+
+食堂は騒がしかったが、私\mynote{猫}の集中力は一点に注がれていた。目の前にある伝説の料理、東工大パワー丼を見つめていた。多くの者が盲目的にそれを消費する中、私はその構造的完全性を理解しようと試みた。
+
+\textcite{sato2023} が食堂力学に関する独創的な論文で主張したように、水菜と焼肉の正確な配分は単なる料理上の選択ではなく、数学的必然である。私は箸を手に取り、彼らの発見を検証する準備をした。
+
+丼を適切に分析するためには、認知的負荷を最小限に抑える必要があった。私は \citeauthor{mayer2021} の原則を適用した。彼は \citeyear{mayer2021} に、人は言葉だけよりも言葉と絵からより良く学ぶことを確立している。したがって、私は食べる前に丼の写真を撮った。
+
+ご飯を掘り進めると、隠された味のネットワークが疑われた。それはまるで、\textcite{Miede2011} がビジネス関係の文脈で記述した「盗聴」技術のように、どこか背徳的な感じがした。ガーリックソースは豚肉と密かに通信していたのだろうか？
+
+私は隠し味の可能性も考慮した。\textcite{suzuki2024} は最近、バナナに関する包括的なガイドを出版した。パワー丼の中にバナナが隠されている可能性はあるだろうか？迅速な味覚テストの結果、間違いなくそうではないことが確認された。
+
+
+この食事のエネルギー密度は高い。\textcite{fiorella2022} によって論じられた生成的活動の原則によれば、学習---この場合は消化---は生成的なプロセスである。
+
+しかし、相関関係と因果関係を混同しないように注意しなければならない。\textcite{tanaka2025} がダミー変数に関する研究で警告しているように、豚肉のように見えるものが、実は巧みに偽装されたフライドガーリック（言わば料理上の「ダミー」変数）である可能性がある。
+
+
+謎は部分的に未解決のままである。\citeauthor{sato2023}の水菜と豚肉の比率に関する理論は真実であったが (\citeyear{sato2023})、パワー丼の感情的インパクトは学術的な引用を超越している。
+
+\section{記号}
+
+正しい入力コードについては \autoref{tab:symbols} を参照してください。コンパイルエラーの最も一般的な原因は、アンパサンド (\&) をエスケープせずに使用することです\mynote{特に.bibファイルの中、著者名のところ}。
+
+
+\begin{table}[htb]
+\centering
+\footnotesize
+\caption{一般的な LaTeX 記号一覧}
+\renewcommand{\arraystretch}{1.5}
+% Modern column definition with better spacing
+\begin{tabular}{@{\extracolsep{4pt}}l c l c l c@{}}
+\toprule
+\rowcolor{headerblue}
+\color{white}\textbf{入力} & \color{white}\textbf{出力} & 
+\color{white}\textbf{入力} & \color{white}\textbf{出力} & 
+\color{white}\textbf{入力} & \color{white}\textbf{出力} \\
+\midrule
+\rowcolor{lightgray}
+\texttt{\textbackslash\%} & \% & 
+\texttt{\textbackslash\$} & \$ & 
+\texttt{\textbackslash\&} & \& \\
+\texttt{\textbackslash\{} & \{ & 
+\texttt{\textbackslash\}} & \} & 
+\texttt{\textbackslash\#} & \# \\
+\midrule
+\rowcolor{lightgray}
+\texttt{\$\textbackslash alpha\$} & $\alpha$ & 
+\texttt{\$\textbackslash theta\$} & $\theta$ & 
+\texttt{\$\textbackslash pi\$} & $\pi$ \\
+
+\texttt{\$\textbackslash Gamma\$} & $\Gamma$ & 
+\texttt{\$\textbackslash Delta\$} & $\Delta$ & 
+\texttt{\$\textbackslash Phi\$} & $\Phi$ \\
+\bottomrule
+\label{tab:symbols}
+\end{tabular}
+\end{table}
+
+\section{改ページ}
+
+改ページを行うコマンドには、{\textbackslash}pagebreak、{\textbackslash}newpage、{\textbackslash}clearpage があります。それぞれの具体的な使用法は異なりますが、基本的には新しいページを開始するために使用されます。
+
+
+
+\section{図}
+図は \texttt{gfx/} フォルダに配置してください。
+
+\begin{figure}[htbp]
+    \centering
+    % Using a standard example image if your specific image isn't available
+    \includegraphics[width=0.5\textwidth]{gfx/example_1.jpg} 
+    \caption{本館前のイチョウ}
+    \label{fig:example-single}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gfx/example_1.jpg}
+        \caption*{(a) 左の図}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.4\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gfx/example_2.jpg}
+        \caption*{(b) 右の図}
+    \end{minipage}
+    
+
+    
+    \caption{2つの図の全体キャプション}
+    \label{fig:two}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gfx/example_1.jpg}
+        \caption*{(a) 1番目の図}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gfx/example_2.jpg}
+        \caption*{(b) 2番目の図}
+    \end{minipage}
+    
+    \vspace{1em}
+    
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gfx/example_3.jpg}
+        \caption*{(c) 3番目の図}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[b]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{gfx/example_4.jpg}
+        \caption*{(d) 4番目の図}
+    \end{minipage}
+    
+    \caption{4つの図の全体キャプション}
+    \label{fig:all}
+\end{figure}
+
+
+\newpage
+
+\section{表}
+表には \texttt{booktabs} を、幅の制御には \texttt{tabularx} を使用してください。
+
+\begin{table}[ht]
+    \centering
+    \footnotesize
+    \caption{booktabs を使用した表の例}
+    \label{tab:example}
+    \begin{tabularx}{\textwidth}{lX}
+        \toprule
+        \textbf{列 1} & \textbf{列 2 (可変幅)} \\
+        \midrule
+        項目 A & 項目 A の説明。長くなる場合は次の行に折り返されます。 \\
+        項目 B & 項目 B の説明。 \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+
+\begin{table}[ht]
+\centering
+\footnotesize
+\caption{booktabs スタイルの電子機器在庫表}
+
+\begin{tabular}{lccr}
+\toprule
+
+\textbf{製品} & \textbf{カテゴリ} & \textbf{在庫} & \textbf{価格 (\$)} \\
+\midrule
+MacBook Pro 16" & Laptop & 45 & 2,499 \\
+Dell XPS 15 & Laptop & 32 & 1,799 \\
+ThinkPad X1 Carbon & Laptop & 28 & 1,899 \\
+\midrule
+Magic Mouse 2 & Accessory & 156 & 79 \\
+Logitech MX Master 3 & Accessory & 203 & 99 \\
+Razer DeathAdder V2 & Accessory & 87 & 69 \\
+\midrule
+Mechanical Keyboard & Peripheral & 64 & 129 \\
+Wireless Keyboard & Peripheral & 91 & 59 \\
+Gaming Keyboard RGB & Peripheral & 43 & 159 \\
+\midrule
+27" 4K Monitor & Display & 38 & 549 \\
+34" Ultrawide Monitor & Display & 22 & 899 \\
+32" Gaming Monitor & Display & 29 & 699 \\
+\midrule
+USB-C Hub & Adapter & 245 & 49 \\
+Thunderbolt Dock & Adapter & 67 & 279 \\
+HDMI Cable 10ft & Cable & 412 & 15 \\
+\bottomrule
+\end{tabular}
+\label{tab:inventory}
+\end{table}
+
+
+\begin{table*}[ht]
+  \centering
+  \setlength{\tabcolsep}{1.5pt} % default is 6pt
+
+  \caption{長い表の例}
+  \label{tab:metrics}
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \begin{threeparttable}
+    % Use S columns defined with Mean(SD) format
+    % We need to find the max format for each column across the *whole* table
+    % Col 1 (Hist 1 Sim, Sci 1 Sim): Max is 2.2(2.2)
+    % Col 2 (Hist 1 Com, Sci 1 Com): Max is 3.2(2.2) (due to '100')
+    % Col 3 (Hist 2 Sim, Sci 2 Sim): Max is 2.2(2.2) (due to 15.81)
+    % Col 4 (Hist 2 Com, Sci 2 Com): Max is 2.2(2.2)
+    \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}
+      l@{\extracolsep{\fill}} 
+      S[table-format=2.2(2.2)]
+      S[table-format=3.2(2.2)]
+      S[table-format=2.2(2.2)]
+      S[table-format=2.2(2.2)]
+    }
+      \toprule
+      % History 1 and 2
+      & \multicolumn{2}{c}{\textsf{歴史 1}}
+      & \multicolumn{2}{c}{\textsf{歴史 2}} \\
+      \cmidrule(lr){2-3}\cmidrule(lr){4-5}
+      % These are already \multicolumn, so they override 'S' and center
+      & \multicolumn{1}{c}{\textsf{単純}} & \multicolumn{1}{c}{\textsf{複雑}}
+      & \multicolumn{1}{c}{\textsf{単純}} & \multicolumn{1}{c}{\textsf{複雑}} \\
+    \midrule
+    %------ Syntactic block ------%
+    \addlinespace
+    \multicolumn{5}{@{}l}{\textsf{構文的複雑さ}} \\
+    文の数 (\emph{N})                  & 27   & 28   & 30   & 29   \\
+    文の長さ (トークン)              & 24.44 (12.52) & 46.07 (22.36) & 24.77 (9.06) & 47.83 (23.11) \\
+    最大文長                   & 54   & 100  & 43   & 95   \\
+    解析木の高さ                     & 4.15 (2.03) & 7.04 (3.01) & 4.43 (1.57) & 7.34 (3.14) \\
+    平均依存距離              & 2.62 (0.59) & 3.27 (0.88) & 2.82 (0.40) & 3.19 (0.50) \\
+
+    %------ Lexical block ------%
+    \addlinespace
+    \multicolumn{5}{@{}l}{\textsf{語彙的複雑さ}} \\
+    高頻度トークン (\%) & 17.74 & 14.45 & 17.01 & 13.90 \\
+    中頻度トークン (\%)  & 22.91 & 26.38 & 19.50 & 21.07 \\
+    低頻度トークン (\%)  &  3.92 &  5.77 &  5.94 &  7.75 \\
+    \midrule
+    %------ Science 1 and 2 ------%
+    & \multicolumn{2}{c}{\textsf{科学 1}}
+      & \multicolumn{2}{c}{\textsf{科学 2}} \\
+      \cmidrule(lr){2-3}\cmidrule(lr){4-5}
+      & \multicolumn{1}{c}{\textsf{単純}} & \multicolumn{1}{c}{\textsf{複雑}}
+      & \multicolumn{1}{c}{\textsf{単純}} & \multicolumn{1}{c}{\textsf{複雑}} \\
+    \midrule
+    %------ Syntactic block ------%
+    \addlinespace
+    \multicolumn{5}{@{}l}{\textsf{構文的複雑さ}} \\
+    文の数 (\emph{N})                  & 26   & 22   & 23   & 25   \\
+    文の長さ (トークン)              & 26.31 (7.91) & 57.23 (16.63) & 32.35 (15.81) & 50.32 (19.15) \\
+    最大文長                   & 45   & 94   & 87   & 99   \\
+    解析木の高さ                     & 5.23 (1.34) & 8.82 (2.30) & 5.61 (1.83) & 8.76 (2.85) \\
+    平均依存距離              & 2.90 (0.62) & 2.99 (0.76) & 2.91 (0.51) & 3.12 (0.66) \\
+
+    %------ Lexical block ------%
+    \addlinespace
+    \multicolumn{5}{@{}l}{\textsf{語彙的複雑さ}} \\
+    高頻度トークン (\%) & 14.24 & 13.40 & 14.37 & 16.80 \\
+    中頻度トークン (\%)  & 26.36 & 27.05 & 27.75 & 29.30 \\
+    低頻度トークン (\%)  &  8.94 &  8.77 &  4.46 &  4.46 \\
+    \bottomrule
+    \end{tabular*}
+    \begin{tablenotes}[flushleft]
+      \footnotesize
+      \item \textsf{注.} 括弧内の値は標準偏差を表します。ほとんどの指標は、カウントと最大値を除き、文全体の平均を示しています。
+    \end{tablenotes}
+  \end{threeparttable}
+\end{table*}
+
+\clearpage
+
+\section{数式}
+数式はインライン $E=mc^2$ または別行立てで記述できます：
+
+\begin{equation}
+    \label{eq:example}
+    f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi)\,e^{2\pi i \xi x} \,d\xi
+\end{equation}
+
+複数行の数式には \texttt{align} を使用します：
+\begin{align}
+    a &= b + c \\
+    &= d + e
+\end{align}
+
+\section{相互参照}
+章 (\autoref{ch:examples})、図 (\autoref{fig:example-single})、表 (\autoref{tab:example})、数式 (\autoref{eq:example}) を自動的に参照できます。
+
+日本語の場合では、\texttt{autorefja} を使用して、章(\autorefja{ch:examples})、節(\autorefja{sec:bib})、図 (\autorefja{fig:example-single})、表 (\autorefja{tab:example})、数式 (\autorefja{eq:example}) を自動的に参照できます。
+
+あるいは、手動で参照することも可能です：章 (第\ref{ch:examples}章) や節 (\S\ref{sec:otherlanguages})。
+
+
+\section{bibファイルの書き方}\label{sec:bib}
+
+下記のファイルを参考するしてもよいと思います。
+\begin{center}
+    \url{https://github.com/ShiroTakeda/jecon-bst/blob/master/jecon-example.bib}
+\end{center}
+
+\twemoji{warning}\twemoji{warning}\twemoji{warning}ただし、日本語で「本の一部でそれ自身に表題があるもの」（英文文献の場合incollection）を引用する場合は、\textbf{incollectionja}を使ってください。\twemoji{warning}\twemoji{warning}\twemoji{warning}
+
+下記に例を示す。
+
+\begin{lstlisting}
+@InCollectionja{takeda2012_cge,
+  author       = {武田, 史郎},
+  title        = {応用一般均衡モデルによる地球温暖化対策の分析：有用性と問題点},
+  editor       = {有村, 俊秀 and 蓬田, 守弘 and 川瀬, 剛志},
+  booktitle    = {地球温暖化対策と国際貿易：排出量取引と国境調整措置をめぐる経済学的・法学的分析},
+  chapter      = 1,
+  pages        = {15--36},
+  publisher    = {東京大学出版会},
+  year         = 2012,
+  langid       = {japanese},
+  yomi         = {takeda, shiro}
+}
+\end{lstlisting}
+
+
+\subsection{英語文献}
+
+標準的な BibTeX フォーマットに従って参考文献エントリを作成してください。以下は一般的なエントリタイプの例です：
+
+\begin{lstlisting}
+
+@incollection{fiorella2022,
+  author    = {Fiorella, Logan and Mayer, Richard E.},
+  title     = {The Generative Activity Principle in Multimedia Learning},
+  booktitle = {The Cambridge Handbook of Multimedia Learning},
+  editor    = {Mayer, Richard E. and Fiorella, Logan},
+  edition   = {3},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {2022},
+  pages     = {339--350},
+  doi       = {10.1017/9781108894333.036}
+}
+
+@article{lusato2025,
+  author    = {Lu, Jialiang and Sato, Reiko},
+  title     = {Linguistic dimensions of comprehensibility and perceived fluency in {L2} speech across tasks of varying complexity},
+  journal   = {Journal of Second Language Pronunciation},
+  volume    = {11},
+  number    = {2},
+  year      = {2025},
+  pages     = {240--266},
+  doi       = {10.1075/jslp.24057.lu}
+}
+
+@book{mayer2021,
+  author    = {Mayer, Richard E.},
+  title     = {Multimedia Learning},
+  edition   = {3},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {2020},
+  doi       = {10.1017/9781316941355}
+}
+
+@INPROCEEDINGS{Miede2011,
+    author = {Andr{\'e} Miede and G\"{o}khan \c{S}im\c{s}ek and Stefan Schulte
+    and Abawi, Daniel F. and Julian Eckert and Ralf Steinmetz},
+    title = {{R}evealing {B}usiness {R}elationships -- {E}avesdropping {C}ross-organizational
+    {C}ollaboration in the {I}nternet of {S}ervices},
+    booktitle = {Proceedings of the Tenth International Conference Wirtschaftsinformatik
+    (WI 2011)},
+    year = {2011},
+    volume = {2},
+    pages = {1083--1092},
+    isbn = {978-1-4467-9236-0}
+}
+\end{lstlisting}
+
+
+
+\subsection{日本語の文献}
+
+
+\begin{lstlisting}
+@article{tanaka2025,
+  title        = {ダミーとミダーの関連性についての検討},
+  author       = {田中, 太郎 and 山田, 花子},
+  journal      = {日本科学会誌},
+  volume       = {10},
+  number       = {1},
+  pages        = {10--25},
+  year         = {2025},
+  doi          = {10.1000/dummy.doi.123},
+  langid       = {japanese},
+  yomi         = {tanaka, taro and yamada, hanako}
+}
+
+@book{suzuki2024,
+  title        = {バナナの基礎と応用},
+  author       = {鈴木, 一郎},
+  publisher    = {東工大出版会},
+  address      = {東京},
+  year         = {2024},
+  langid       = {japanese},
+  yomi         = {suzuki, ichiro}
+}
+
+@inproceedings{sato2023,
+  title        = {東工大パワー丼における水菜と豚肉の配分},
+  author       = {加藤, 次郎},
+  booktitle    = {東工大学食学会第50回全国大会講演論文集},
+  pages        = {100--102},
+  year         = {2023},
+  month        = aug,
+  langid       = {japanese},
+  yomi         = {kato, jiro}
+}
+\end{lstlisting}
+
+\texttt{yomi} フィールドの形式によって、参考文献のソート順が決まります：
+
+\begin{description}
+    \item[ひらがな:] 日本語文献は英語文献の後に分けてリストされ、五十音順にソートされます。
+    \item[ローマ字:] 日本語文献は英語文献と混在し、アルファベット順にソートされます。
+\end{description}
+
+
+中国語の文献でも \texttt{langid=japanese} を使用できますが、参考文献リストでは日本語フォントで表示されます。個人的には問題ないと考えています\twemoji{thumbs up}。
+
+
+
+
+\section{日本語のフォント}
+
+メインフォント\mynote{英文も}はNoto Serif Japaneseを使っています。
+
+\begin{center}
+    \url{https://fonts.google.com/noto/specimen/Noto+Serif+JP}
+\end{center}
+
+ゴシックフォント\mynote{英文も}はNoto Sans Japaneseを使っています。
+
+\begin{center}
+    \url{https://fonts.google.com/noto/specimen/Noto+Sans+JP}
+\end{center}
+
+\subsection{Mainfont}
+
+吾輩は猫である。名前はまだ無い。
+
+
+\textbf{吾輩は猫である。名前はまだ無い。}
+
+\subsection{Sansfont}
+
+
+\textsf{吾輩は猫である。名前はまだ無い。}
+
+
+\textsf{\textbf{吾輩は猫である。名前はまだ無い。}}
+
+
+\subsection{Monofont}
+
+\texttt{吾輩は猫である。名前はまだ無い。}
+
+
+\texttt{\textbf{吾輩は猫である。名前はまだ無い。}}
+
+
+\subsection{特殊記号}
+
+\begin{flushleft}
+☀ ☁ ☂ ☃ ★ ☆ ☎ ☏ ☜ ☝ ☞ ☟ ☯ ♀ ♁ ♂ ☉
+
+
+%% Enclosed Alphanumerics (U+2460-U+24FF)
+% Circled numbers 1-20
+① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳
+
+% Circled numbers 21-50 (Enclosed Alphanumeric Supplement)
+㉑ ㉒ ㉓ ㉔ ㉕ ㉖ ㉗ ㉘ ㉙ ㉚ ㉛ ㉜ ㉝ ㉞ ㉟
+㊱ ㊲ ㊳ ㊴ ㊵ ㊶ ㊷ ㊸ ㊹ ㊺ ㊻ ㊼ ㊽ ㊾ ㊿
+
+% Parenthesized numbers
+⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇
+
+% Numbers with period
+⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛
+
+% Parenthesized lowercase letters
+⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵
+
+% Circled uppercase letters
+Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ
+
+% Circled lowercase letters
+ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ
+
+
+
+% Double circled numbers
+⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾
+
+% Negative circled numbers (black circle)
+❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿
+
+%% Enclosed CJK Letters and Months (U+3200-U+32FF)
+
+% Parenthesized Ideographs
+㈠ ㈡ ㈢ ㈣ ㈤ ㈥ ㈦ ㈧ ㈨ ㈩
+㈪ ㈫ ㈬ ㈭ ㈮ ㈯ ㈰
+㈱ ㈲ ㈳ ㈴ ㈵ ㈶ ㈷ ㈸ ㈹ ㈺ ㈻ ㈼ ㈽ ㈾ ㈿
+㉀ ㉁ ㉂ ㉃
+
+
+% Circled Katakana
+㋐ ㋑ ㋒ ㋓ ㋔ ㋕ ㋖ ㋗ ㋘ ㋙ ㋚ ㋛ ㋜ ㋝ ㋞ ㋟
+㋠ ㋡ ㋢ ㋣ ㋤ ㋥ ㋦ ㋧ ㋨ ㋩ ㋪ ㋫ ㋬ ㋭ ㋮ ㋯
+㋰ ㋱ ㋲ ㋳ ㋴ ㋵ ㋶ ㋷ ㋸ ㋹ ㋺ ㋻ ㋼ ㋽ ㋾
+
+% Circled Ideographs
+㊀ ㊁ ㊂ ㊃ ㊄ ㊅ ㊆ ㊇ ㊈ ㊉
+㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊐
+㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊙ ㊚ ㊛ ㊜ ㊝ ㊞ ㊟
+㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯
+㊰
+
+% Japanese Era Names
+㋿ ㍻ ㍼ ㍽ ㍾
+
+% Telegraph Symbols
+㍿ ㏠ ㏡ ㏢ ㏣ ㏤ ㏥ ㏦ ㏧ ㏨ ㏩ ㏪ ㏫ ㏬ ㏭ ㏮ ㏯
+㏰ ㏱ ㏲ ㏳ ㏴ ㏵ ㏶ ㏷ ㏸ ㏹ ㏺ ㏻ ㏼ ㏽ ㏾
+
+%% CJK Compatibility (U+3300-U+33FF) - Square Katakana Words
+㌀ ㌁ ㌂ ㌃ ㌄ ㌅ ㌆ ㌇ ㌈ ㌉ ㌊ ㌋ ㌌ ㌍ ㌎ ㌏
+㌐ ㌑ ㌒ ㌓ ㌔ ㌕ ㌖ ㌗ ㌘ ㌙ ㌚ ㌛ ㌜ ㌝ ㌞ ㌟
+㌠ ㌡ ㌢ ㌣ ㌤ ㌥ ㌦ ㌧ ㌨ ㌩ ㌪ ㌫  ㌭ ㌮ ㌯
+㌰ ㌱ ㌲ ㌳ ㌴ ㌵ ㌶ ㌷ ㌸ ㌹ ㌺ ㌻ ㌼ ㌽ ㌾ ㌿
+㍀ ㍁ ㍂ ㍃ ㍄ ㍅ ㍆ ㍇ ㍈ ㍉ ㍊ ㍋ ㍌ ㍍ ㍎ ㍏
+㍐ ㍑ ㍒ ㍓ ㍔ ㍕ ㍖ ㍗
+
+% Square Time/Date
+㍘ ㍙ ㍚ ㍛ ㍜ ㍝ ㍞ ㍟ ㍠ ㍡ ㍢ ㍣ ㍤ ㍥ ㍦ ㍧
+㍨ ㍩ ㍪ ㍫ ㍬ ㍭ ㍮ ㍯ ㍰
+
+% Square Latin Abbreviations / Units
+㎀ ㎁ ㎂ ㎃ ㎄ ㎅ ㎆ ㎇ ㎈ ㎉ ㎊ ㎋ ㎌ ㎍ ㎎ ㎏
+㎐ ㎑ ㎒ ㎓ ㎔ ㎕ ㎖ ㎗ ㎘ ㎙ ㎚ ㎛ ㎜ ㎝ ㎞ ㎟
+㎠ ㎡ ㎢ ㎣ ㎤ ㎥ ㎦ ㎧ ㎨ ㎩ ㎪ ㎫ ㎬ ㎭ ㎮ ㎯
+㎰ ㎱ ㎲ ㎳ ㎴ ㎵ ㎶ ㎷ ㎸ ㎹ ㎺ ㎻ ㎼ ㎽ ㎾ ㎿
+㏀ ㏁ ㏂ ㏃ ㏄ ㏅ ㏆ ㏇ ㏈ ㏉ ㏊ ㏋ ㏌ ㏍ ㏎ ㏏
+㏐ ㏑ ㏒ ㏓ ㏔ ㏕ ㏖ ㏗ ㏘ ㏙ ㏚ ㏛ ㏜ ㏝ 
+\end{flushleft}
+
+
+
+\subsection{Other Languages}\label{sec:otherlanguages}
+
+一応下記の4種類のフォントを入れてみました。他の言語のフォントを追加すれば、使えるはずです。
+
+例えば、タイ語の場合：
+
+\begin{lstlisting}
+% Thai
+\newfontfamily\thaifont{Noto Serif Thai}[Script=Thai]
+\newcommand{\textthai}[1]{{\thaifont #1}}
+
+\end{lstlisting}
+
+
+\paragraph{Simplified Chinese}
+\textzhsc{海客谈瀛洲，烟涛微茫信难求。 越人语天姥，云霞明灭或可睹。 天姥连天向天横，势拔五岳掩赤城。}
+
+\paragraph{Traditional Chinese}
+\textzhtc{海客談瀛洲，煙濤微茫信難求。 越人語天姥，雲霞明滅或可覩。 天姥連天向天橫，勢拔五嶽掩赤城。}
+
+\paragraph{Japanese}
+海客瀛洲を談ず、煙濤微茫にして信に求め難しと。越人天姥を語る、雲霓明滅或は睹る可しと。天姥天に連なり天に向って橫たはる、勢は五嶽を拔き赤城を掩ふ。
+
+\paragraph{Korean}
+\textkr{
+해객담영주 연도미망신난구 월인어천모 운예명멸혹가도 천모연천향천횡 세발오악엄적성}
+
+
+\section{絵文字}
+
+
+\newcommand{\smokingMan}{%
+\begin{tikzpicture}[baseline=-0.3em, inner sep=0pt]
+    \node at (0,0) {\twemoji[height=1cm]{technologist}};
+    \node[rotate=15] at (0.8em, 0.05em) {\twemoji[height=0.5cm]{cigarette}};
+\end{tikzpicture}
+}
+
+
+
+論文では使わないと思いますが\smokingMan
+
+
+\begin{table}[!ht]
+    \centering
+    \caption{Some Examples}
+
+\begin{tabular}{cll}
+\toprule
+\textbf{Icon} & \textbf{Command} & \textbf{Description} \\
+\midrule
+\twemoji{smile} & \verb|\twemoji{smile}| & Standard smile \\
+\twemoji{joy} & \verb|\twemoji{joy}| & Tears of joy \\
+\twemoji{wink} & \verb|\twemoji{wink}| & Winking face \\
+\twemoji{thinking face} & \verb|\twemoji{thinking face}| & Thinking \\
+\twemoji{sparkles} & \verb|\twemoji{sparkles}| & Sparkles \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+詳細は下記を参照してください。
+\begin{center}
+    \url{https://jp.mirrors.cicku.me/ctan/macros/latex/contrib/twemojis/twemojis.pdf}
+\end{center}
+
+\section{Margin Note}
+
+\begin{lstlisting}
+\mynote{パワー丼食べたい}
+\end{lstlisting}
+
+パワー丼食べたい\mynote{その通り}。
+
+\section{ToDo}
+
+下記のように、文中にToDoを追加するのも可能です\todo{学食に行く。}。
+
+\begin{lstlisting}
+\todo{パワー丼を食べる。}
+\end{lstlisting}
+
+食堂は騒がしかったが、私の集中力は一点に注がれていた。目の前にある伝説の料理、東工大パワー丼を見つめていた\todo{パワー丼を食べる。}。多くの者が盲目的にそれを消費する中、私はその構造的完全性を理解しようと試みた\todo{おかわりする。}。
